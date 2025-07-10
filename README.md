@@ -1,4 +1,4 @@
-# 📡 Desa Digital API - Hapi.js + MySQL
+# 📡 Desa API - Hapi.js + MySQL
 
 Backend API untuk platform layanan digital desa, dibuat menggunakan Hapi.js dan MySQL.
 
