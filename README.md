@@ -64,7 +64,83 @@ http://localhost:8080
 }
 ```
 
-## 📰 Berita & Kegiatan (Admin Only)
+### Google OAuth Login
+**POST** `/auth/google`
+
+**Body:**
+```json
+{
+  "token": "GOOGLE_ID_TOKEN"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "Login Google berhasil",
+  "token": "JWT_TOKEN_HERE",
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@gmail.com",
+    "avatar": "https://lh3.googleusercontent.com/..."
+  }
+}
+```
+
+#### Cara Implementasi Google Login di Frontend:
+
+```html
+<!-- 1. Load Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!-- 2. Add Google Sign-In Button -->
+<div id="g_id_onload"
+     data-client_id="YOUR_GOOGLE_CLIENT_ID"
+     data-callback="handleGoogleLogin">
+</div>
+<div class="g_id_signin" data-type="standard"></div>
+
+<!-- 3. Handle Response -->
+<script>
+  function handleGoogleLogin(response) {
+    // Send token to backend
+    fetch('/auth/google', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: response.credential })
+    })
+    .then(res => res.json())
+    .then(data => {
+      // Save token and redirect
+      localStorage.setItem('token', data.token);
+      window.location.href = '/dashboard';
+    });
+  }
+</script>
+```
+
+## � User Authentication Flow
+
+### Regular Authentication
+1. User register dengan email/password
+2. Password di-hash dengan bcrypt
+3. User login dengan email/password
+4. Server validasi credentials dan return JWT token
+5. Client simpan token di localStorage/cookies
+6. Token digunakan untuk request ke protected endpoints
+
+### Google OAuth Authentication
+1. User klik "Login with Google" button
+2. Google Identity Services popup muncul
+3. User pilih Google account
+4. Google return ID token ke frontend
+5. Frontend kirim token ke endpoint `/auth/google`
+6. Backend verify token dengan Google API
+7. Jika valid, create/update user dan return JWT token
+8. Flow selanjutnya sama dengan regular auth
+
+## �📰 Berita & Kegiatan (Admin Only)
 
 ### Tambah Berita
 **POST** `/tambah/berita`
@@ -179,7 +255,8 @@ Authorization: Bearer JWT_TOKEN_HERE
 - **Cloudinary** - Cloud storage untuk media
 - **Sharp** - Image compression
 - **bcrypt** - Password hashing
-- **Google Autht** - Login dengan akun google
+- **Google OAuth** - Social login dengan Google
+
 ## 📌 Catatan Tambahan
 
 - Semua file media di-upload ke Cloudinary dengan kompresi otomatis
