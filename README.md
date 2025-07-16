@@ -179,7 +179,7 @@ Authorization: Bearer JWT_TOKEN_HERE
 - **Cloudinary** - Cloud storage untuk media
 - **Sharp** - Image compression
 - **bcrypt** - Password hashing
-
+- **Google Autht** - Login dengan akun google
 ## 📌 Catatan Tambahan
 
 - Semua file media di-upload ke Cloudinary dengan kompresi otomatis
