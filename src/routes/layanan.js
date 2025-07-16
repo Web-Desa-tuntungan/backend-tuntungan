@@ -11,7 +11,7 @@ export default [
   // USER - Buat layanan
   {
     method: 'POST',
-    path: '/layanan',
+    path: '/tambah/layanan',
     options: {
       pre: [authenticate, authorize(['user'])],
       handler: createLayanan
@@ -31,7 +31,7 @@ export default [
   // ADMIN - Lihat semua layanan
   {
     method: 'GET',
-    path: '/layanan',
+    path: '/lihat/layanan',
     options: {
       pre: [authenticate, authorize(['admin'])],
       handler: getAllLayanan

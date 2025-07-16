@@ -8,11 +8,6 @@ A comprehensive Hapi.js backend for village service management, featuring user/a
 - Admin CRUD for news, agenda, announcements, and gallery
 - Modular code structure
 
-## Setup
-1. Copy `.env` from `.env example` and fill in your DB credentials.
-2. Install dependencies: `npm install`
-3. Start server: `npm run dev`
-
 ## Folder Structure
 - `src/config/` – DB config
 - `src/handlers/` – Feature logic

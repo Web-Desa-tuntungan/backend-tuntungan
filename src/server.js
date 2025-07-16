@@ -1,23 +1,21 @@
 import 'dotenv/config';
 import Hapi from '@hapi/hapi';
-import Inert from '@hapi/inert'; // plugin untuk static file
+import Inert from '@hapi/inert'; 
 import routes from './routes/index.js';
 
 const init = async () => {
   const server = Hapi.server({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 8080,
     host: '0.0.0.0',
     routes: {
       cors: {
-        origin: ['*'] // izinkan semua origin
+        origin: ['*'] // 
       }
     }
   });
 
-  // Register plugin Inert
   await server.register(Inert);
 
-  // Serve static files in /uploads
   server.route({
     method: 'GET',
     path: '/uploads/{param*}',
@@ -30,7 +28,6 @@ const init = async () => {
     }
   });
 
-  // Register semua route dari routes/index.js
   routes(server);
 
   await server.start();
