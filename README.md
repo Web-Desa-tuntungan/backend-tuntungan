@@ -3,7 +3,7 @@
 Backend API untuk platform layanan digital Desa Tuntungan 1, dibuat menggunakan Hapi.js dan MySQL dengan fitur lengkap untuk pengelolaan desa modern.
 
 ## 🛠️ Fitur Utama
-
+ 
 - **🔐 Autentikasi:** Register & Login dengan JWT
 - **📰 Berita & Kegiatan:** CRUD oleh Admin dengan upload gambar
 - **🖼️ Galeri:** Upload foto & video ke Cloudinary
